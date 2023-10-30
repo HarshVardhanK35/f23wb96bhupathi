@@ -2,7 +2,9 @@ extends layout
 
 block content
   h1= title
-  p Welcome to the #{title}
+  p Welcome to the #{title} Page
+  br
+  br
   -
     let results = [
         { productName: "Product 1", price: 10.99, description: "Description 1" },
@@ -11,8 +13,13 @@ block content
     ]
   div.container-fluid
     div.row
-        each item in results
-            div.col-sm-2
-            h3 Product Name: #{item.productName}
-            p Price: $#{item.price}
-            p Description: #{item.description}
+      each item, index in results
+        div.col-sm-2(onclick = `buy(${index})`)
+          h4 Product: #{item.productName}
+          p Price: $#{item.price}
+          p Description: #{item.description}
+
+  script.
+      function buy(index) {
+        alert(`You purchased item ${index}.`);
+      }
